@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import csv
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 import pandas as pd
 from io import BytesIO
 import base64
@@ -11,16 +13,16 @@ app = Flask(__name__)
 def index():
     graph_data = []
 
-    population_pyramid_data = generate_population_pyramid('Comisiones_limpio.csv')
+    population_pyramid_data = generate_population_pyramid('BASE/Comisiones_limpio.csv')
     graph_data.append(population_pyramid_data)
 
-    top_values_data = generate_top_values('Siniestros_limpio.csv', 'CAUSA DEL SINIESTRO', 'Causa del siniestro Top 15')
+    top_values_data = generate_top_values('BASE/Siniestros_limpio.csv', 'CAUSA DEL SINIESTRO', 'Causa del siniestro Top 15')
     graph_data.append(top_values_data)
 
-    cobertura_data = generate_cobertura_pie_chart('Emisiones_limpio.csv', 'COBERTURA', 'Cobertura')
+    cobertura_data = generate_cobertura_pie_chart('BASE/Emisiones_limpio.csv', 'COBERTURA', 'Cobertura')
     graph_data.append(cobertura_data)
 
-    state_distribution_data = generate_state_distribution('Ors_Entidad Limp_FINAL-2.csv', 'ENTIDAD', 'Distribución por entidad federativa')
+    state_distribution_data = generate_state_distribution('BASE/Ors_Entidad Limp_FINAL-2.csv', 'ENTIDAD', 'Distribución por entidad federativa')
     graph_data.append(state_distribution_data)
 
     return render_template('index.html', graph_data=graph_data)
