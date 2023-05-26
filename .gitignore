@@ -7,6 +7,8 @@ __pycache__/
 *.so
 BASE/
 templates/
+base/
+
 
 # Distribution / packaging
 .Python
