@@ -143,3 +143,4 @@ def generate_state_distribution(file_path, column_name, title):
 
 if __name__ == '__main__':
     app.run()
+    
